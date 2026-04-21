@@ -16,7 +16,6 @@ export default function Hero() {
           clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)",
         }}
       />
-      {/* Subtle red glow */}
       <div
         className="absolute top-20 right-20 w-96 h-96 rounded-full pointer-events-none"
         style={{ background: "radial-gradient(circle, rgba(200,0,26,0.07), transparent 70%)" }}
@@ -24,7 +23,7 @@ export default function Hero() {
 
       <div className="relative max-w-6xl mx-auto px-6 pt-28 pb-20 grid md:grid-cols-2 gap-16 items-center w-full">
 
-        {/* Left — Text */}
+        {/* Left */}
         <div>
           <motion.span
             className="label"
@@ -80,7 +79,6 @@ export default function Hero() {
               LinkedIn ↗
             </a>
           </motion.div>
-
         </div>
 
         {/* Right — Photo */}
@@ -113,12 +111,16 @@ export default function Hero() {
               className="absolute -bottom-3 -right-3 w-full h-full -z-10 border-2"
               style={{ borderColor: "var(--red)" }}
             />
-            {/* Location tag */}
+            {/* Location tag — no emoji */}
             <div
-              className="absolute -bottom-5 left-0 bg-white border px-3 py-1.5 shadow-sm"
+              className="absolute -bottom-5 left-0 bg-white border px-3 py-1.5 shadow-sm flex items-center gap-2"
               style={{ borderColor: "var(--border)" }}
             >
-              <span className="text-xs" style={{ color: "var(--muted)" }}>📍 {content.location}</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C8001A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span className="text-xs" style={{ color: "var(--muted)" }}>{content.location}</span>
             </div>
           </div>
         </motion.div>
