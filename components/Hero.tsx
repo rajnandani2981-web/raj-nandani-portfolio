@@ -1,131 +1,139 @@
 "use client";
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { content } from "@/content";
-import Image from "next/image";
-
-const Scene3D = dynamic(() => import("./Scene3D"), { ssr: false });
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <Scene3D />
+    <section
+      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{ background: "var(--bg)" }}
+    >
+      {/* Diagonal alt panel */}
+      <div
+        className="absolute top-0 right-0 h-full w-1/2 hidden md:block"
+        style={{
+          background: "var(--bg-alt)",
+          clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)",
+        }}
+      />
+      {/* Subtle red glow */}
+      <div
+        className="absolute top-20 right-20 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(200,0,26,0.07), transparent 70%)" }}
+      />
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0a0a] z-10" />
+      <div className="relative max-w-6xl mx-auto px-6 pt-28 pb-20 grid md:grid-cols-2 gap-16 items-center w-full">
 
-      <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
-        {/* Photo */}
+        {/* Left — Text */}
+        <div>
+          <motion.span
+            className="label"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Marketing Portfolio
+          </motion.span>
+
+          <motion.h1
+            className="serif mt-4 font-bold leading-tight"
+            style={{ fontSize: "clamp(2.8rem, 5.5vw, 4.5rem)", color: "var(--text)" }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
+            {content.name.split(" ")[0]}
+            <br />
+            <span style={{ color: "var(--red)" }}>{content.name.split(" ")[1]}</span>
+          </motion.h1>
+
+          <motion.p
+            className="mt-5 text-base leading-relaxed max-w-md"
+            style={{ color: "var(--muted)" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.25 }}
+          >
+            {content.tagline}
+          </motion.p>
+
+          <motion.div
+            className="mt-8 flex flex-wrap gap-3"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+          >
+            <a
+              href="#work"
+              className="px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#A00015]"
+              style={{ background: "var(--red)" }}
+            >
+              View My Work
+            </a>
+            <a
+              href={content.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 text-sm font-semibold bg-white border transition-colors hover:border-[#C8001A] hover:text-[#C8001A]"
+              style={{ color: "var(--text)", borderColor: "var(--border)" }}
+            >
+              LinkedIn ↗
+            </a>
+          </motion.div>
+
+        </div>
+
+        {/* Right — Photo */}
         <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
-          className="mx-auto mb-8 relative"
-          style={{ width: 140, height: 140 }}
+          className="flex justify-center md:justify-end"
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#F40009] to-[#F5A623] p-[3px]">
-            <div className="w-full h-full rounded-full overflow-hidden bg-[#111]">
-              <Image
+          <div className="relative">
+            <div
+              className="w-96 h-[28rem] md:w-[28rem] md:h-[36rem] overflow-hidden"
+              style={{ background: "var(--bg-alt)" }}
+            >
+              <img
                 src={content.photo}
                 alt={content.name}
-                width={140}
-                height={140}
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).style.display = "none";
+                  const el = e.target as HTMLImageElement;
+                  el.style.display = "none";
+                  if (el.parentElement) {
+                    el.parentElement.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:700;color:#C8001A;">RN</div>`;
+                  }
                 }}
               />
-              {/* Placeholder initials shown when no photo */}
-              <div className="absolute inset-0 flex items-center justify-center text-3xl font-bold text-white/40 rounded-full">
-                RN
-              </div>
+            </div>
+            {/* Offset red border */}
+            <div
+              className="absolute -bottom-3 -right-3 w-full h-full -z-10 border-2"
+              style={{ borderColor: "var(--red)" }}
+            />
+            {/* Location tag */}
+            <div
+              className="absolute -bottom-5 left-0 bg-white border px-3 py-1.5 shadow-sm"
+              style={{ borderColor: "var(--border)" }}
+            >
+              <span className="text-xs" style={{ color: "var(--muted)" }}>📍 {content.location}</span>
             </div>
           </div>
-          {/* Pulsing ring */}
-          <motion.div
-            animate={{ scale: [1, 1.15, 1], opacity: [0.6, 0, 0.6] }}
-            transition={{ duration: 2.5, repeat: Infinity }}
-            className="absolute inset-[-8px] rounded-full border-2 border-[#F40009]"
-          />
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="text-[#F40009] text-sm tracking-[0.3em] uppercase mb-3"
-        >
-          Marketing Portfolio
-        </motion.p>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="text-5xl md:text-7xl font-black mb-4 leading-none"
-        >
-          <span className="gradient-text">{content.name}</span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="text-white/60 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed"
-        >
-          {content.tagline}
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-          className="flex gap-4 justify-center flex-wrap"
-        >
-          <a
-            href="#experience"
-            className="px-8 py-3 bg-[#F40009] text-white font-semibold rounded-full hover:bg-[#cc0007] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(244,0,9,0.5)]"
-          >
-            View My Work
-          </a>
-          <a
-            href={content.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-3 border border-white/20 text-white rounded-full hover:border-white/60 transition-all duration-300 hover:scale-105"
-          >
-            LinkedIn
-          </a>
-        </motion.div>
-
-        {/* Stats bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9 }}
-          className="mt-16 grid grid-cols-3 gap-6 max-w-lg mx-auto"
-        >
-          {[
-            { num: "30%+", label: "Attendance Growth" },
-            { num: "40%", label: "Campaign Reach ↑" },
-            { num: "50+", label: "Assets Created" },
-          ].map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="text-2xl font-black gradient-text">{s.num}</div>
-              <div className="text-white/40 text-xs mt-1">{s.label}</div>
-            </div>
-          ))}
         </motion.div>
       </div>
 
       {/* Scroll indicator */}
       <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        animate={{ y: [0, 6, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
       >
-        <span className="text-white/30 text-xs tracking-widest">SCROLL</span>
-        <div className="w-px h-10 bg-gradient-to-b from-[#F40009] to-transparent" />
+        <div
+          className="w-px h-12 mx-auto"
+          style={{ background: "linear-gradient(to bottom, var(--red), transparent)" }}
+        />
       </motion.div>
     </section>
   );

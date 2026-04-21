@@ -1,51 +1,93 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { content } from "@/content";
 
-const links = ["About", "Experience", "Projects", "Skills", "Contact"];
+const links = [
+  { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Work", href: "#work" },
+  { label: "Skills", href: "#skills" },
+  { label: "Contact", href: "#contact" },
+];
 
 export default function Nav() {
-  const { scrollYProgress } = useScroll();
-  const bg = useTransform(scrollYProgress, [0, 0.05], ["rgba(10,10,10,0)", "rgba(10,10,10,0.95)"]);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <motion.nav
-      style={{ backgroundColor: bg }}
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-4 backdrop-blur-sm"
+      initial={{ y: -16, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        background: scrolled ? "rgba(249,248,246,0.97)" : "transparent",
+        borderBottom: scrolled ? "1px solid var(--border)" : "none",
+        boxShadow: scrolled ? "0 1px 12px rgba(0,0,0,0.06)" : "none",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+      }}
     >
-      <motion.span
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        className="text-white font-bold text-lg tracking-widest"
-      >
-        <span className="gradient-text">RN</span>
-      </motion.span>
-      <motion.ul
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="hidden md:flex gap-8"
-      >
-        {links.map((l) => (
-          <li key={l}>
+      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="#" className="serif font-bold text-xl" style={{ color: "var(--text)" }}>
+          Raj <span style={{ color: "var(--red)" }}>Nandani</span>
+        </a>
+
+        <div className="hidden md:flex items-center gap-8">
+          {links.map((l) => (
             <a
-              href={`#${l.toLowerCase()}`}
-              className="text-white/60 hover:text-white text-sm tracking-wider transition-colors duration-200 hover:text-[#F40009]"
+              key={l.label}
+              href={l.href}
+              className="text-sm font-medium transition-colors duration-200 hover:text-[#C8001A]"
+              style={{ color: "var(--muted)" }}
             >
-              {l}
+              {l.label}
             </a>
-          </li>
-        ))}
-      </motion.ul>
-      <motion.a
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        href={`mailto:${content.email}`}
-        className="text-sm px-4 py-2 border border-[#F40009] text-[#F40009] rounded-full hover:bg-[#F40009] hover:text-white transition-all duration-300"
-      >
-        Hire Me
-      </motion.a>
+          ))}
+          <a
+            href={`mailto:${content.email}`}
+            className="text-sm font-semibold px-5 py-2.5 text-white transition-colors duration-200 hover:bg-[#A00015]"
+            style={{ background: "var(--red)" }}
+          >
+            Hire Me
+          </a>
+        </div>
+
+        <button
+          className="md:hidden flex flex-col gap-1.5 p-2"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Menu"
+        >
+          <span className="block w-5 h-px" style={{ background: "var(--text)" }} />
+          <span className="block w-5 h-px" style={{ background: "var(--text)" }} />
+          <span className="block w-5 h-px" style={{ background: "var(--text)" }} />
+        </button>
+      </div>
+
+      {menuOpen && (
+        <div
+          className="md:hidden bg-white border-t px-6 py-5 flex flex-col gap-5"
+          style={{ borderColor: "var(--border)" }}
+        >
+          {links.map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              className="text-sm font-medium"
+              style={{ color: "var(--text)" }}
+              onClick={() => setMenuOpen(false)}
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+      )}
     </motion.nav>
   );
 }

@@ -11,7 +11,7 @@ export const content = {
   phone: "07459 797 411",
   location: "Sheffield, UK",
   linkedin: "https://linkedin.com/in/raj-nandani-a63244254",
-  photo: "/photo.jpg", // Replace with your actual photo filename in /public
+  photo: "/Profile.jpg",
 
   skills: [
     "360° Campaign Management",
@@ -47,6 +47,7 @@ export const content = {
         "Developed 360° channel improvement recommendations across Currys, Amazon, John Lewis, and D2C.",
         "Delivered a 3-year strategic roadmap as a PowerPoint executive briefing to a professional panel.",
       ],
+      link: "/samsung-mobile-ecosystem.pdf",
     },
     {
       role: "Volunteer — Marketing & Events",
@@ -92,6 +93,7 @@ export const content = {
         "Analysed 1,664 historical campaigns (83.3% statistical significance) to identify top markets, channels & creative strategies for a $10M student acquisition campaign.",
         "Recommended 50/30/20 budget split across Search, YouTube & social — projected 600K+ sign-ups and 289M reach at $16.50 blended CPA.",
       ],
+      link: "/google-marketing-challenge.pdf",
     },
     {
       title: "OSHEE Sports Nutrition — Live Marketing Challenge",
@@ -116,3 +118,48 @@ export const content = {
     "Microsoft Excel: Beginner to Advanced (Udemy)",
   ],
 };
+
+export const creativeWork = [
+  {
+    image: "/posters/poster1.jpg",
+    title: "Campaign Poster 1",
+    category: "Brand Campaign",
+    description: "Marketing visual crafted for a brand campaign.",
+    colors: ["#1a1a2e", "#16213e"],
+  },
+  {
+    image: "/posters/poster2.jpg",
+    title: "Campaign Poster 2",
+    category: "Social Media",
+    description: "Social media visual for lifestyle brand.",
+    colors: ["#2d1b2e", "#11998e"],
+  },
+  {
+    image: "/posters/poster3.jpg",
+    title: "Campaign Poster 3",
+    category: "Food & Beverage",
+    description: "Product campaign visual for food brand.",
+    colors: ["#c8001a", "#2c0000"],
+  },
+  {
+    image: "/posters/poster4.jpg",
+    title: "Campaign Poster 4",
+    category: "Fashion",
+    description: "Fashion campaign creative asset.",
+    colors: ["#1a1a1a", "#4a4a4a"],
+  },
+  {
+    image: "/posters/poster5.jpg",
+    title: "Campaign Poster 5",
+    category: "Digital Marketing",
+    description: "Digital marketing visual for product launch.",
+    colors: ["#0f3460", "#533483"],
+  },
+  {
+    image: "/posters/poster6.jpg",
+    title: "Campaign Poster 6",
+    category: "Brand Strategy",
+    description: "Brand strategy campaign visual.",
+    colors: ["#2c3e50", "#3498db"],
+  },
+];

@@ -8,49 +8,88 @@ export default function Skills() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="skills" ref={ref} className="py-32 px-6 max-w-5xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7 }}
-        className="mb-16"
-      >
-        <p className="text-[#F40009] text-sm tracking-[0.3em] uppercase mb-3">Toolkit</p>
-        <h2 className="text-4xl md:text-5xl font-black">
-          Skills & <span className="gradient-text">Expertise</span>
-        </h2>
-      </motion.div>
+    <section id="skills" ref={ref} className="py-24" style={{ background: "var(--bg)" }}>
+      <div className="max-w-6xl mx-auto px-6">
 
-      <div className="flex flex-wrap gap-3 mb-20">
-        {content.skills.map((skill, i) => (
-          <motion.span
-            key={skill}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.4, delay: i * 0.05 }}
-            whileHover={{ scale: 1.1, backgroundColor: "#F40009", color: "#fff" }}
-            className="px-4 py-2 glass rounded-full text-sm text-white/70 cursor-default transition-all duration-300 border border-transparent hover:border-[#F40009]"
-          >
-            {skill}
-          </motion.span>
-        ))}
-      </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          <span className="label">Skills & Credentials</span>
+          <h2 className="serif mt-3 text-4xl font-bold" style={{ color: "var(--text)" }}>
+            Capabilities & Certifications
+          </h2>
+        </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7, delay: 0.4 }}
-      >
-        <p className="text-white/50 text-xs tracking-widest uppercase mb-6">Certifications</p>
-        <div className="grid md:grid-cols-2 gap-4">
-          {content.certifications.map((cert, i) => (
-            <div key={i} className="glass rounded-xl px-5 py-4 flex items-center gap-4">
-              <div className="w-2 h-2 rounded-full bg-[#F40009] shrink-0" />
-              <span className="text-white/70 text-sm">{cert}</span>
+        <div className="grid md:grid-cols-2 gap-16">
+
+          {/* Skills pills */}
+          <div>
+            <h3
+              className="text-xs font-semibold uppercase tracking-widest mb-6"
+              style={{ color: "var(--muted)" }}
+            >
+              Core Skills
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {content.skills.map((skill, i) => (
+                <motion.span
+                  key={skill}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={inView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.3, delay: i * 0.04 }}
+                  className="text-xs font-medium px-3 py-2 border cursor-default transition-all duration-200 hover:text-white hover:border-[#C8001A]"
+                  style={{
+                    background: "var(--bg-alt)",
+                    borderColor: "var(--border)",
+                    color: "var(--text)",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.background = "var(--red)";
+                    (e.currentTarget as HTMLElement).style.color = "#fff";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.background = "var(--bg-alt)";
+                    (e.currentTarget as HTMLElement).style.color = "var(--text)";
+                  }}
+                >
+                  {skill}
+                </motion.span>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Certifications */}
+          <div>
+            <h3
+              className="text-xs font-semibold uppercase tracking-widest mb-6"
+              style={{ color: "var(--muted)" }}
+            >
+              Certifications
+            </h3>
+            <div className="space-y-3">
+              {content.certifications.map((cert, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  className="flex items-center gap-4 p-4 border transition-colors hover:border-[#C8001A]"
+                  style={{ background: "white", borderColor: "var(--border)" }}
+                >
+                  <div
+                    className="w-2 h-2 rounded-full flex-shrink-0"
+                    style={{ background: "var(--red)" }}
+                  />
+                  <span className="text-sm" style={{ color: "var(--text)" }}>{cert}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
