@@ -4,7 +4,7 @@
 
 export const content = {
   name: "Raj Nandani",
-  tagline: "Marketing Intern | Brand Storyteller | Consumer Insights",
+  tagline: "Creative Story Telling | Market Researcher | Branding | SEO",
   summary:
     "Results-driven MSc Management & International Business student at the University of Sheffield with hands-on experience in 360° marketing campaigns, social media management, content creation, and consumer research.",
   email: "Rajnandani2981@gmail.com",
@@ -30,22 +30,22 @@ export const content = {
 
   experience: [
     {
-      role: "Digital Content & Social Media Intern",
+      role: "Content Writer & Communication Intern",
       company: "University of Sheffield",
-      period: "April 2026 – Present",
+      period: "May 2026 – Present",
       bullets: [
         "Creating a digital information booklet for the Make it Grow programme in Zimbabwe, translating complex research into storytelling for grassroots communities.",
-        "Managing weekly social media content — platform-ready posts combining research insights with community imagery and video.",
+        "Managing weekly social media content platform-ready posts combining research insights with community imagery and video.",
       ],
     },
     {
-      role: "Spring Internship — Marketing Strategy",
+      role: "Spring Internship Experience with SAMSUNG",
       company: "Samsung × University of Sheffield",
       period: "Spring 2026",
       bullets: [
-        "Benchmarked Samsung's ecosystem against Apple and Google across AI, cross-device continuity, and D2C channels — producing a competitive scoring model.",
+        "Benchmarked Samsung's ecosystem against Apple and Google across AI, cross-device continuity, and D2C channels producing a competitive scoring model.",
         "Developed 360° channel improvement recommendations across Currys, Amazon, John Lewis, and D2C.",
-        "Delivered a 3-year strategic roadmap as a PowerPoint executive briefing to a professional panel.",
+        "Delivered a 3 year strategic roadmap as a PowerPoint executive briefing to a professional panel.",
       ],
       link: "/samsung-mobile-ecosystem.pdf",
     },
@@ -54,7 +54,7 @@ export const content = {
       company: "Management Society, BIT India",
       period: "Jan 2023 – May 2024",
       bullets: [
-        "Managed LinkedIn & Instagram via Hootsuite — 3–4 posts/week — driving 30%+ increase in event attendance.",
+        "Managed LinkedIn & Instagram via Hootsuite — 3–4 posts/week driving 30%+ increase in event attendance.",
         "Produced 20+ short-form videos across 5 campaigns, lifting post engagement by ~25%.",
         "Coordinated end-to-end delivery of 8+ events within budget.",
       ],
