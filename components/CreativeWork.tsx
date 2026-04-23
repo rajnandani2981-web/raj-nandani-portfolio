@@ -71,7 +71,6 @@ export default function CreativeWork() {
                     {item.category}
                   </span>
                   <h3 className="text-white font-semibold text-sm mt-1">{item.title}</h3>
-                  <p className="text-white/70 text-xs mt-2 leading-relaxed">{item.description}</p>
                 </div>
               </div>
 
